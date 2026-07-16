@@ -1,0 +1,55 @@
+# Name of your application. Used to uniquely configure containers.
+service: nuxtdemo
+
+# Name of the container image.
+image: adammusa/nuxtdemo
+
+# Deploy to these servers.
+servers:
+  web:
+    hosts:
+              - 5.78.46.167
+
+
+# Branded error pages served by kamal-proxy (503 shows the maintenance message).
+error_pages_path: .alkimist/error_pages
+
+# SSH from the user's account container. Deploys must be non-interactive.
+ssh:
+  user: root
+  keys_only: true
+  keys:
+    - /home/deployer/.ssh/id_rsa
+  config: /home/deployer/.ssh/config
+
+proxy:
+  ssl: true
+  hosts:
+    - nuxtjs.alkimist.dev
+  app_port: 3000
+  healthcheck:
+    path: /
+
+
+# Credentials for your image host.
+registry:
+  server: localhost:5555
+
+env:
+  clear:
+    PORT: 3000
+
+
+# Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
+aliases:
+  shell: app exec --interactive --reuse "sh"
+  logs: app logs
+
+
+# Build on the project's own VPS: Alkimist orchestrates, your server builds.
+# With registry.server localhost:5555, Kamal runs a transfer registry on the
+# deploy container and SSH-forwards port 5555 to the VPS for push and pull.
+builder:
+  arch: amd64
+  local: false
+  remote: ssh://root@5.78.46.167

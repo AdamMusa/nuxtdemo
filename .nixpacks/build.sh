@@ -1,0 +1,1 @@
+docker build . -f ./.nixpacks/Dockerfile -t 336911f4-1d04-4d91-9a9f-472770969fad --build-arg CI=true --build-arg NIXPACKS_METADATA=node --build-arg NIXPACKS_NODE_VERSION=22 --build-arg NODE_ENV=production --build-arg NPM_CONFIG_PRODUCTION=false
