@@ -1,0 +1,1 @@
+{"name":"nuxtdemo","private":true,"type":"module","scripts":{"build":"nuxt build","dev":"nuxt dev","start":"node .output/server/index.mjs"},"dependencies":{"nuxt":"^4.0.0","vue":"^3.5.0"}}
